@@ -11,9 +11,9 @@ import javax.swing.*;
 public class PizzaOrder extends JFrame implements ActionListener {
     private int baseCost, toppingCost;
     private double sizeMultiplier = 1.0;
-    private JButton orderButton, cancelButton;
-    private JPanel downPanel;
-    private JTextField text;
+    private final JButton orderButton;
+    private final JButton cancelButton;
+    private final JTextField text;
 
     WelcomePanel welcomePanel = new WelcomePanel();
     TypePanel typePanel = new TypePanel();
@@ -35,7 +35,7 @@ public class PizzaOrder extends JFrame implements ActionListener {
         text.setEditable(false);
         text.setColumns(6);
 
-        downPanel = new JPanel();
+        JPanel downPanel = new JPanel();
         downPanel.add(this.orderButton);
         downPanel.add(this.cancelButton);
         downPanel.add(this.text);
@@ -73,20 +73,18 @@ public class PizzaOrder extends JFrame implements ActionListener {
     }
 
     class TypePanel extends JPanel {
-        private JRadioButton combo, potato, bulgogi;
-        private ButtonGroup bg;
 
         public TypePanel() {
             setLayout(new GridLayout(3, 1));
-            combo = new JRadioButton("콤보", true);
-            potato = new JRadioButton("포테이토");
-            bulgogi = new JRadioButton("불고기");
+            JRadioButton combo = new JRadioButton("콤보", true);
+            JRadioButton potato = new JRadioButton("포테이토");
+            JRadioButton bulgogi = new JRadioButton("불고기");
 
             combo.addActionListener(e -> baseCost = 12000);
             potato.addActionListener(e -> baseCost = 15000);
             bulgogi.addActionListener(e -> baseCost = 18000);
 
-            bg = new ButtonGroup();
+            ButtonGroup bg = new ButtonGroup();
             bg.add(combo);
             bg.add(potato);
             bg.add(bulgogi);
@@ -99,7 +97,10 @@ public class PizzaOrder extends JFrame implements ActionListener {
     }
 
     class ToppingPanel extends JPanel {
-        private JCheckBox pepper, cheese, peperoni, bacon;
+        private final JCheckBox pepper;
+        private final JCheckBox cheese;
+        private final JCheckBox peperoni;
+        private final JCheckBox bacon;
 
         public ToppingPanel() {
             setLayout(new GridLayout(4, 1));
@@ -123,20 +124,18 @@ public class PizzaOrder extends JFrame implements ActionListener {
     }
 
     class SizePanel extends JPanel {
-        private JRadioButton small, medium, large;
-        private ButtonGroup bg;
 
         public SizePanel() {
             setLayout(new GridLayout(3, 1));
-            small = new JRadioButton("Small", true);
-            medium = new JRadioButton("Medium");
-            large = new JRadioButton("Large");
+            JRadioButton small = new JRadioButton("Small", true);
+            JRadioButton medium = new JRadioButton("Medium");
+            JRadioButton large = new JRadioButton("Large");
 
             small.addActionListener(e -> sizeMultiplier = 1.0);
             medium.addActionListener(e -> sizeMultiplier = 1.5);
             large.addActionListener(e -> sizeMultiplier = 2.0);
 
-            bg = new ButtonGroup();
+            ButtonGroup bg = new ButtonGroup();
             bg.add(small);
             bg.add(medium);
             bg.add(large);
